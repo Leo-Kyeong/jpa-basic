@@ -1,28 +1,36 @@
 package hellojpa;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.*;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
+import java.util.Date;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Member {
-
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String name;
 
-	public Long getId() {
-		return id;
-	}
+	@Column(name = "name")
+	private String username;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	private Integer age;
 
-	public String getName() {
-		return name;
-	}
+	@Enumerated(EnumType.STRING)
+	private RoleType roleType;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastModifiedDate;
+
+	@Lob
+	private String description;
 }
