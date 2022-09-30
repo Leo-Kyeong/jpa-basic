@@ -10,13 +10,13 @@ public class JpaMain {
 		EntityManager em = emf.createEntityManager();
 
 		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		tx.begin(); // Transaction 시작
 
 		try {
 			// INSERT
             Member member = new Member();
             member.setId(2L);
-            member.setName("HelloA");
+            member.setUsername("HelloA");
             em.persist(member);
 
             // SELECT(단건 조회)
@@ -31,14 +31,14 @@ public class JpaMain {
                     .getResultList();
 
             for (Member memberFind : result) {
-                System.out.println("member.getName = "+ memberFind.getName());
+                System.out.println("member.getName = "+ memberFind.getUsername());
             }
 
             // DELETE
             em.remove(findMember);
 
             // UPDATE(dirty checking)
-            findMember.setName("HelloJPA");
+            findMember.setUsername("HelloJPA");
 
             tx.commit(); // Transaction 저장
 		} catch (Exception e) {
