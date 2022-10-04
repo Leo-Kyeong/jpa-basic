@@ -1,7 +1,5 @@
 package hellojpa;
 
-import jpabook.jpashop.domain.Member;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -17,12 +15,13 @@ public class Entity {
 		tx.begin(); // Transaction 시작
 
 		try {
-//			Member member = new Member();
-//			member.setUsername("A");
-//			System.out.println("============================");
-//			em.persist(member);
-//			System.out.println("member id = " + member.getId());
-//			System.out.println("============================");
+			Member member = new Member();
+			member.setName("A");
+			System.out.println("============================");
+			System.out.println("member id = " + member.getId());
+			em.persist(member);
+			System.out.println("member id = " + member.getId());
+			System.out.println("============================");
 
 			tx.commit(); // Transaction 저장
 		} catch (Exception e) {
