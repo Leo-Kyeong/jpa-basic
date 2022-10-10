@@ -18,6 +18,6 @@ public class Team {
 	@Column(name = "TEAM_ID")
 	private Long id;
 
-	@Column(name = "TEAMNAME")
+	@Column(name = "TEAM_NAME")
 	private String name;
 }
