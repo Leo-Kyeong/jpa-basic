@@ -2,10 +2,10 @@ package hellojpa;
 
 import lombok.*;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,4 +20,7 @@ public class Team {
 
 	@Column(name = "TEAM_NAME")
 	private String name;
+
+	@OneToMany(mappedBy = "team")
+	private List<Member> members = new ArrayList<>();
 }
