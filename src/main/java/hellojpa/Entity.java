@@ -1,10 +1,12 @@
 package hellojpa;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-
+@Slf4j
 public class Entity {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -17,11 +19,14 @@ public class Entity {
 		try {
 			Member member = new Member();
 			member.setName("A");
-			System.out.println("============================");
-			System.out.println("member id = " + member.getId());
+
+			log.info("============================");
+			log.info("member id = {}",member.getId());
+
 			em.persist(member);
-			System.out.println("member id = " + member.getId());
-			System.out.println("============================");
+
+			log.info("member id = {}",member.getId());
+			log.info("============================");
 
 			tx.commit(); // Transaction 저장
 		} catch (Exception e) {
