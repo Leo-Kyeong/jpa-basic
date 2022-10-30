@@ -13,18 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Member {
-	@Id @GeneratedValue
-	@Column(name = "MEMBER_ID")
+public class Product {
+
+	@Id
+	@GeneratedValue
 	private Long id;
 
-	@Column(name = "USER_NAME")
 	private String name;
 
-	@ManyToMany
-	@JoinTable(name = "MEMBER_PRODUCT")
-	private List<Product> products = new ArrayList<>();
-	@ManyToOne
-	@JoinColumn(name = "TEAM_ID")
-	private Team team;
+	@ManyToMany(mappedBy = "products")
+	private List<Member> members = new ArrayList<>();
 }
