@@ -13,11 +13,11 @@ import javax.persistence.Inheritance;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn
 public abstract class Item {
-
 	@Id
 	@GeneratedValue
 	Long id;
 
 	String name;
+
 	int price;
 }
