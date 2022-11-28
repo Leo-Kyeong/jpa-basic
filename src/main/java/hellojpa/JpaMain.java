@@ -1,5 +1,7 @@
 package hellojpa;
 
+import hellojpa.entity.Member;
+
 import javax.persistence.*;
 import java.util.List;
 

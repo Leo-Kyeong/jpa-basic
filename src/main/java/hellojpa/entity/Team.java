@@ -1,4 +1,4 @@
-package hellojpa;
+package hellojpa.entity;
 
 import lombok.*;
 
@@ -13,18 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Member {
+public class Team {
 	@Id @GeneratedValue
-	@Column(name = "MEMBER_ID")
+	@Column(name = "TEAM_ID")
 	private Long id;
 
-	@Column(name = "USER_NAME")
+	@Column(name = "TEAM_NAME")
 	private String name;
 
-	@ManyToMany
-	@JoinTable(name = "MEMBER_PRODUCT")
-	private List<Product> products = new ArrayList<>();
-	@ManyToOne
-	@JoinColumn(name = "TEAM_ID")
-	private Team team;
+	@OneToMany(mappedBy = "team")
+	private List<Member> members = new ArrayList<>();
 }

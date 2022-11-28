@@ -1,5 +1,8 @@
 package hellojpa;
 
+import hellojpa.entity.Member;
+import hellojpa.entity.Team;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -16,22 +19,28 @@ public class Proxy {
 
 		try {
 			Team team = new Team();
-			team.setName("팀1");
+			team.setName("team");
 			em.persist(team);
 
 			Member member = new Member();
 			member.setName("student");
-			em.persist(member);
 			member.setTeam(team);
+			em.persist(member);
 
 			em.flush();
 			em.clear();
 
-			Member reference = em.getReference(Member.class, 1L);
-			System.out.println("reference.getClass() = " + reference.getClass());
+//			Member refMember = em.getReference(Member.class, 1L);
+//			System.out.println("refMember.getClass() = " + refMember.getClass());
 
-//			Member findMember = em.find(Member.class, 1L);
-//			printMemberAndTeam(member);
+			// 강제 초기화
+			// org.hibernate.Hibernate.initialize(refMember);
+
+			// 강제 호출
+			// refMember.getName();
+
+			 Member findMember = em.find(Member.class, 1L);
+			 printMemberAndTeam(member);
 
 			tx.commit(); // Transaction 저장
 		} catch (Exception e) {
@@ -47,6 +56,6 @@ public class Proxy {
 		System.out.println("userName = " + userName);
 
 		Team team = member.getTeam();
-		System.out.println("team.getName() = " + team.getName());
+		System.out.println("team = " + team.getClass());
 	}
 }
