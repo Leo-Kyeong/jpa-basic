@@ -7,7 +7,9 @@ import lombok.*;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,6 +30,19 @@ public class Member {
 
 	@Embedded
 	private Address homeAddress;
+
+	@ElementCollection
+	@CollectionTable(name = "FAVORITE_FOOD", joinColumns =
+		@JoinColumn(name = "MEMBER_ID")
+	)
+	@Column(name = "FOOD_NAME")
+	private Set<String> favoriteFoods = new HashSet<>();
+
+	@ElementCollection
+	@CollectionTable(name = "ADDRESS", joinColumns =
+		@JoinColumn(name = "MEMBER_ID")
+	)
+	private List<Address> addressHistory = new ArrayList<>();
 
 	@Embedded
 	@AttributeOverrides({
